@@ -1,0 +1,24 @@
+\chapter{Thuật toán PageRank của Google}
+%-----------------------------------------------------------------------
+\section{Khái quát}
+Dựa vào những vấn đề ở Chương 4, Larry Page và Sergey Brin đã đưa ra 1 ma trận mới để đảm bảo tính duy nhất của phân bố xác suất cố định của một ma trận.
+$$ G = \beta M' + (1 - \beta) \left[\dfrac{1}{N}\right]_{N\text{x}N} , M^{'} = M + a^T(\frac{1}{n} \cdot e)$$
+Với: 
+\begin{itemize}
+    \item $M$ là ma trận xác suất chuyển đổi ban đầu
+    \item $a$ là ma trận ($n$ x $n$) được xây dựng theo cơ sở:
+            \begin{itemize}
+                \item Với $i$ là chỉ số dòng, $j$ là chỉ số cột
+                \item $a_{ij}=1$ nếu node thứ $i$ không có \emph{outgoing links}, ngược lại $a_{ij}=0$
+            \end{itemize} 
+    \item $e$ là ma trận đơn vị cấp $n$
+    \item $\beta \in (0,1)$ là hệ số damping factor.
+\end{itemize}
+Lúc này ta được G là \textit{primitive stochastic matrix}, vì vậy nó có 2 thuộc tính irreducible và aperiodic. Thuộc tính này có thể đảm bảo sự tồn tại và tính duy nhất của \textit{rank vector} chi phối không âm do ma trận xếp hạng. 
+
+\textbf{Primitive stochastic matrix: } Ma trận vuông ngẫu nhiên được gọi là \textit{primitive} nếu với $n  \geq 1$ thì ma trận $A^n$ không có phần tử nào bằng không.\cite{Primitive_Stochastic_Matrices}\\
+Chúng ta sẽ dùng phương pháp luỹ thừa ma trận và tìm ra \textit{rank vector r} qua phương trình: 
+$$r=G\cdot r$$
+
+\section{Thử nghiệm thuật toán cài đặt bằng Python}
+Để kiểm nghiệm kết quả thuật toán PageRank của Google nhóm 5 có thực hiện cài đặt thuật toán bằng Python tại file \textbf{'pagerank.ipynb'} đính kèm với báo cáo.
